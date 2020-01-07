@@ -6,7 +6,7 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 import { Container, Row, Col, FormGroup, Label, Button } from 'reactstrap';
 
-const LoginForm = ({values, errors, touched, stataus}) => {
+const LoginForm = ({props, values, errors, touched, stataus}) => {
     return (
         <>
         <Container>
@@ -49,8 +49,8 @@ const LoginFormik = withFormik({
     handleSubmit(values, { props, resetForm, setStatus }) {
         axiosWithAuth().post('/user/login', values)
             .then(res => {
-                localStorage.setItem('token', res.data.payload);
-                props.history.push("/another-spot");
+                localStorage.setItem('token', res.data.token);
+                props.history.push('/Create-Trip');
             })
             .catch(err => console.log(err.response))
     }
