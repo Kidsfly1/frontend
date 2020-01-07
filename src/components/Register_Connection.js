@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import {Link} from 'react-router-dom'
+//import { Route, Redirect } from 'react-router-dom';
 import { withFormik, Form, Field} from  'formik';
 import * as Yup from 'yup'
 import Axios from 'axios';
@@ -17,7 +16,7 @@ const UserForm = ({values, touched, errors, status, role}) =>{
     <div className='user-form'>
       <Form>
         <div className="topbar"></div>
-        <h2>KidsFly</h2>
+        <h2>KidsFly Connection</h2>
         <label htmlFor='username'>UserName:</label>
         <Field id='username' type='text' name='username' placeholder='User@gmail.com'/>
         <label htmlFor='password'>Password: (Must contain at least 8 characters)</label>
@@ -32,10 +31,9 @@ const UserForm = ({values, touched, errors, status, role}) =>{
         <Field id='state' type='text' name='state' placeholder='State/Prov'/>
         <label htmlFor="zip">Zip:</label>
         <Field id='zip' type='number' name='zip' placeholder='ZipCode'/>
-        <Field id='role_id' type='hidden' name='role_id' placeholder='1' />
+        <Field id='role_id' type='hidden' name='role_id' placeholder='2' />
         <button type='submit'>Sign Up</button>
       </Form>
-      <Link to={{pathname:'/Register_Connection', role:2}}>Sign Up as a KidsFly Connection</Link>
     </div>
   );
 
@@ -51,7 +49,7 @@ const FormikUserForm = withFormik({
       address: address || '',
       state: state || '',
       zip: zip || 0,
-      role_id: role || 1
+      role_id: role || 2
     };
   },
   validationSchema: Yup.object().shape({
