@@ -26,7 +26,7 @@ const LoginForm = ({props, values, errors, touched, stataus}) => {
                         <FormGroup style={{textAlign: 'center'}}>
                               <Link to="/sign-up" style={{fontSize: '.9rem', color: 'black'}}>Sign up to be a KidsFly Connection</Link>
                         </FormGroup>
-                        <Button color="secondary" type="submit" block className="mt-5">Submit</Button>
+                        <Button color="dark" type="submit" block className="mt-5">Submit</Button>
                     </Form>
                 </Col>
             </Row>

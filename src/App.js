@@ -8,20 +8,23 @@ import LoginForm from './components/LoginForm';
 import CreateTrip from './components/CreateTrip/CreateTrip';
 import AgentHome from './components/AgentLoggedIn/AgentHome';
 import AgentTrips from './components/AgentLoggedIn/AgentTrips';
+import Header from './components/Header';
 
 function App() {
 
   return (
     <>
-      
-        <Switch>
-          <PrivateRoute path="/Agents" component={AgentHome} />
-          <PrivateRoute path="/Create-Trip" component={CreateTrip} />
-          <PrivateRoute path="/Agent-Trips" component={AgentTrips} />
-          
-          <Route path="/Login" component={LoginForm} />
-          <Route component={LoginForm} />
-        </Switch>
+      <Header />
+      <Switch>
+        <PrivateRoute path="/Agents" component={AgentHome} />
+        <PrivateRoute path="/Agent-Trips" component={AgentTrips} />
+        <PrivateRoute path="/Agent-Trips/:id" component={AgentTrips} />
+
+        <PrivateRoute path="/Create-Trip" component={CreateTrip} />
+        
+        <Route path="/Login" component={LoginForm} />
+        <Route component={LoginForm} />
+      </Switch>
     </>
   )
 }
