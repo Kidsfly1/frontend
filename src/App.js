@@ -2,10 +2,13 @@
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom'
 
+import { KidsFlyContext } from './context/KidsFlyContext';
+
 import LoginMain from './components/UserPortal';
 import Register from './components/Register'
 import RegisterConnection from './components/Register_Connection';
-import FamilyWelcome from './components/FamilyWelcome'
+import RegisterAdmin from './components/Register-Admin';
+import FamilyWelcome from './components/FamilyWelcome';
 
 import './App.css';
 
@@ -23,24 +26,31 @@ import AgentTripDetails from './components/AgentLoggedIn/AgentTripDetails';
 import AdminHome from './components/AdminLoggedIn/AdminHome'
 
 function App() {
+  const [currentUser, setCurrentUser] = useState({});
+
   return (
     <>
-      <Header />
-      <Switch>
-        <PrivateRoute path="/Agents" component={AgentHome} />
-        <PrivateRoute path="/Agent-Trips" component={AgentTrips} />
-        <PrivateRoute path="/Agent-Trip-Details/:id" component={AgentTripDetails} />
+      <KidsFlyContext.Provider value={{currentUser, setCurrentUser}}>
+        <Header />
 
-        <PrivateRoute path="/Admin" component={AdminHome} />
+        <Switch>
+          <PrivateRoute path="/Agents" component={AgentHome} />
+          <PrivateRoute path="/Agent-Trips" component={AgentTrips} />
+          <PrivateRoute path="/Agent-Trip-Details/:id" component={AgentTripDetails} />
 
-        <PrivateRoute path="/Create-Trip" component={CreateTrip} />
-        <PrivateRoute path="/Welcome" component={FamilyWelcome} />
+          <PrivateRoute path="/Admin" component={AdminHome} />
 
-        <Route path="/Register" component={Register} />
-        <Route path="/Register-Agent" component={RegisterConnection} />
-        <Route path="/Login" component={LoginForm} />
-        <Route component={LoginForm} />
-      </Switch>
+          <PrivateRoute path="/Create-Trip" component={CreateTrip} />
+          <PrivateRoute path="/Welcome" component={FamilyWelcome} />
+
+          <Route path="/Register" component={Register} />
+          <Route path="/Register-Agent" component={RegisterConnection} />
+          <Route path="/Register-Admin" component={RegisterAdmin} />
+          <Route path="/Login" component={LoginForm} />
+          <Route component={LoginForm} />
+        </Switch>
+      
+      </KidsFlyContext.Provider>
     </>
   )
 }

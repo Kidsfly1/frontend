@@ -54,8 +54,8 @@ const CreateTrip = () => {
                     }
                     return errors
                 }}
-                onSubmit={(values, { props, setSubmitting }) =>{
-                    console.log(values)
+                onSubmit={(values, { props, setSubmitting }) => {
+                    // console.log(values)
                     setSubmitting(true)
                     axiosWithAuth().post('/trip', values)
                         .then(res => {
