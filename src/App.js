@@ -1,5 +1,11 @@
+
 import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom'
+
+import LoginMain from './components/UserPortal';
+import Register from './components/Register'
+import RegisterConnection from './components/Register_Connection';
+import FamilyWelcome from './components/FamilyWelcome'
 
 import './App.css';
 
@@ -11,7 +17,6 @@ import AgentTrips from './components/AgentLoggedIn/AgentTrips';
 import Header from './components/Header';
 
 function App() {
-
   return (
     <>
       <Header />
