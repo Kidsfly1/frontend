@@ -10,24 +10,7 @@ import { Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
-
-      <Route path='/Register_Connection'
-      render={props => <RegisterConnection/>}
-      />
-      
-      <Route path='/Register'
-      render={props => <Register/>}
-      />
-
-      <Route path='/Welcome-Fam'
-      render={props => <FamilyWelcome/>}
-      />
-
-      <Route exact path='/UserPortal'
-      render={props => <LoginMain/>}
-      />
-      
+    <div>      
     </div>
   )
 }
