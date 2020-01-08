@@ -4,7 +4,13 @@ import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 const AgentTrips = (props) => {
-    const [tripList] = useState(props.location.state);
+    const [tripList, setTripList] = useState({});
+
+    useEffect(() => {
+        axiosWithAuth().get('/trip/admin')
+        .then(res => setTripList(res.data))
+        .catch(err => console.log(err.response))
+    }, [])
 
     return (
         <Container>
@@ -16,9 +22,9 @@ const AgentTrips = (props) => {
             </Row>
             <Row>
                 <Col xs="12" sm={{size: 8, offset: 2}}>
-                    {
+                    { tripList.length &&
                         tripList.map(trip => 
-                            <Link to={'/Agent-Trips/'+trip.id} className="btn btn-outline-dark btn-block">{trip.date} {trip.flight}</Link>
+                            <Link key={trip.id} to={'/Agent-Trip-Details/'+trip.id} className="btn btn-outline-dark btn-block">{trip.date} {trip.flight}</Link>
                         )
                     }
                 </Col>

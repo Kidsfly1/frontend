@@ -10,11 +10,17 @@ import FamilyWelcome from './components/FamilyWelcome'
 import './App.css';
 
 import PrivateRoute from './components/PrivateRoute';
+
+import Header from './components/Header';
 import LoginForm from './components/LoginForm';
+
 import CreateTrip from './components/CreateTrip/CreateTrip';
+
 import AgentHome from './components/AgentLoggedIn/AgentHome';
 import AgentTrips from './components/AgentLoggedIn/AgentTrips';
-import Header from './components/Header';
+import AgentTripDetails from './components/AgentLoggedIn/AgentTripDetails';
+
+import AdminHome from './components/AdminLoggedIn/AdminHome'
 
 function App() {
   return (
@@ -23,10 +29,15 @@ function App() {
       <Switch>
         <PrivateRoute path="/Agents" component={AgentHome} />
         <PrivateRoute path="/Agent-Trips" component={AgentTrips} />
-        <PrivateRoute path="/Agent-Trips/:id" component={AgentTrips} />
+        <PrivateRoute path="/Agent-Trip-Details/:id" component={AgentTripDetails} />
+
+        <PrivateRoute path="/Admin" component={AdminHome} />
 
         <PrivateRoute path="/Create-Trip" component={CreateTrip} />
-        
+        <PrivateRoute path="/Welcome" component={FamilyWelcome} />
+
+        <Route path="/Register" component={Register} />
+        <Route path="/Register-Agent" component={RegisterConnection} />
         <Route path="/Login" component={LoginForm} />
         <Route component={LoginForm} />
       </Switch>
