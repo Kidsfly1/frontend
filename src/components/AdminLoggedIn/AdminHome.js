@@ -8,9 +8,11 @@ const AdminHome = (props) => {
     const { currentUser } = useContext(KidsFlyContext);
 
     if (currentUser.role_id === 2) {
-        props.history.push('/Agents')
+        props.history.push('/Agents');
+        return null;
     }else if(currentUser.role_id === 1) {
         props.history.push('/Welcome');
+        return null;
     }
 
     return (
