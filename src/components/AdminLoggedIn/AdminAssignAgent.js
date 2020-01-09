@@ -26,9 +26,9 @@ const AdminAgentAssign = (props) => {
                     <Formik
                         initialValues={{agent: '', tripId: props.computedMatch.params.id}}
                         onSubmit={(values) => {
-                            // axiosWithAuth().put(`/trips/${props.computedMatch.params.id}`)
-                            //     .then(res => console.log(res))
-                            //     .catch(err => console.log(err))
+                            axiosWithAuth().put(`/trip/${props.computedMatch.params.id}`, {agent_id: values.agent})
+                                .then(res => console.log(res))
+                                .catch(err => console.log(err))
                         }}
                     >
                         <Form>
@@ -36,9 +36,9 @@ const AdminAgentAssign = (props) => {
                                 <option value="1">Nameless Agent</option>
                                 {
                                     agentList.map(agent =>
-                                        // (agent.fullname &&
+                                        (agent.fullname &&
                                             <option key={agent.id} value={agent.id}>{agent.fullname}</option>
-                                        //)
+                                        )
                                     )
                                 }
                             </Field>

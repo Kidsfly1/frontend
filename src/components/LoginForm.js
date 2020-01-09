@@ -54,7 +54,7 @@ const LoginForm = (props) => {
                                         if(res.data.user.fullname == null){
                                             props.history.push('/UpdateInfo');
                                         }else{
-                                            props.history.push('/Create-Trip')
+                                            props.history.push('/Welcome')
                                         }
                                         
                                     }
