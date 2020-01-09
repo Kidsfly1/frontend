@@ -35,6 +35,19 @@ label {
 }
 
 .subHeader svg{
-  color: #fff;
+  color: black;
   margin-top: 5px;
+}
+
+.subHeader h2{
+  color: black;
+}
+
+.headerGradient, .btn{
+  /* turquoise 50 */
+  background: linear-gradient(to bottom,rgba(255,255,255, .6) 0%,white 0,rgba(12, 198, 238) 100%);
+  color: Black;
+}
+.btn{
+  border:none;
 }

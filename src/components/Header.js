@@ -5,6 +5,7 @@ import { Icon, InlineIcon } from "@iconify/react";
 import bxsUser from '@iconify/icons-bx/bxs-user';
 import bxLogOut from '@iconify/icons-bx/bx-log-out';
 import bxHome from '@iconify/icons-bx/bx-home';
+import '../App.css'
 
 
 
