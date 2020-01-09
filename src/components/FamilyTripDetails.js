@@ -14,7 +14,7 @@ import bxMap from '@iconify/icons-bx/bx-map';
 const FamilyTripDetails = (props) => {
     const {currentUser, setCurrentUser} = useContext(KidsFlyContext);
     const [tripDetail, setTripDetail] = useState({});
-    const [alertBtn, setAlertBtn] = useState(false);
+    const [alertBtn, setAlertBtn] = useState(0);
 
     useEffect(() => {
         const tripId = props.computedMatch.params.id;
@@ -27,12 +27,19 @@ const FamilyTripDetails = (props) => {
     const deleteTrip = (trip) => {
         axiosWithAuth().delete(`/trip/${props.computedMatch.params.id}`)
             .then(res => {
-                    console.log(res);
-                    props.history.push('/Welcome');
+                    props.history.push('/MyTrips');
                 }
             )
             .catch(err => console.log(err))
     } 
+
+    const updateAlertBtn = () => {
+        if(alertBtn === 2){
+            setAlertBtn(0)
+        }else{
+            setAlertBtn(alertBtn + 1)
+        }
+    }
 
     return (
         <Container>
@@ -59,18 +66,18 @@ const FamilyTripDetails = (props) => {
             </Row>
             <Row>
                 <Col xs="12" sm={{size: 10, offset: 1}} md={{size: 8, offset: 2}} lg={{size: 6, offset: 3}} className="mt-5 mb-5">
-                    <Button color="dark" block className="p-4" onClick={() => setAlertBtn(true)}>
+                    <Button color="dark" block className="p-4" onClick={() => updateAlertBtn()}>
                         {
-                            !alertBtn ? (
-                                <>
-                                    <Icon icon={bxTimeFive} /> Send 5 Minute Alert
-                                </>
-                            ) : (
-                                <>
-                                    <Icon icon={bxMap} /> Send Arrival Alert
-                                </>
-                            )
+                            (alertBtn === 0 && <><Icon icon={bxMap} /> Send Arrival Alert</>)
                         }
+
+                        {
+                            (alertBtn === 1 && <><Icon icon={bxTimeFive} /> Send 5 Minute Alert</>)
+                        }
+                        {
+                            (alertBtn === 2 && <><Icon icon={bxTimeFive} /> Alert Sent</>)
+                        }
+                             
                     </Button>
                     <Link to={`/Update-Trip/${props.computedMatch.params.id}`} className="btn btn-block btn-outline-dark p-4"> <Icon icon={bxPencil} /> Update Trip </Link>
                     <Button color="danger" outline block className="p-3" onClick={() => deleteTrip()}> <Icon icon={bxTrash} /> Delete Trip </Button>
