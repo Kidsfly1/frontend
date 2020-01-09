@@ -26,7 +26,7 @@ import AgentTripDetails from './components/AgentLoggedIn/AgentTripDetails';
 import AdminHome from './components/AdminLoggedIn/AdminHome'
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState((localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : {});
 
   return (
     <>
