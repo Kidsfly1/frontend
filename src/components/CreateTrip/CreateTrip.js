@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { Container, Row, Col, Button } from 'reactstrap';
@@ -22,7 +22,7 @@ const initialValues = {
     //selectedAgent: ''
   }
 
-const CreateTrip = () => {
+const CreateTrip = (props) => {
     const [currentStep, setCurrentStep] = useState(1);
     const [tripForm, setTripForm] = useState(initialValues);
     const [isSubmitting, setSubmitting] = useState(false);
@@ -33,6 +33,15 @@ const CreateTrip = () => {
             [e.target.name]: e.target.value
         })
     }
+
+    useEffect(() => {
+        if(props.computedMatch.params.id) {
+            const tripId = props.computedMatch.params.id;
+            axiosWithAuth().get(`/trip/${tripId}`)
+                .then(res => console.log(res))
+                .catch(err => console.log(err))
+        }
+    }, [])
 
     const _next = () => {
         setCurrentStep(currentStep >= 3 ? 4 : currentStep + 1);
@@ -60,7 +69,7 @@ const CreateTrip = () => {
                     setSubmitting(true)
                     axiosWithAuth().post('/trip', values)
                         .then(res => {
-                            setCurrentStep(4)
+                            setCurrentStep(3)
                             setSubmitting(false)
                         })
                         .catch(err => console.log(err.message))
@@ -76,7 +85,7 @@ const CreateTrip = () => {
                         {currentStep === 2 && <Button type="submit" color="dark" block className="mt-5 mb-1 p-4">Book Trip</Button>}
                         
                         {currentStep < 2 && currentStep !== 2 && <Button onClick={() => _next()} color="dark" block className="mt-5 mb-1 p-4">Continue</Button>}
-                        {currentStep !== 1 && currentStep !== 3 && <Button onClick={() => _prev()} color="dark" block>Go Back</Button>}
+                        {currentStep !== 1 && currentStep !== 3 && <Button onClick={() => _prev()} color="dark" block className="p-3">Go Back</Button>}
                         {currentStep === 1 && <Link to="/Welcome" className="btn btn-outline-dark btn-block mb-1 p-4">Cancel</Link>}
 
                         {currentStep === 3 && <Link to="/Welcome" className="btn btn-dark btn-block mt-5 mb-1 p-4">Main Menu</Link>}

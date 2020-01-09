@@ -27,9 +27,12 @@ const AdminTripRequest = (props) => {
             </Row>
             <Row>
                 <Col xs="12" sm={{size: 8, offset: 2}} className="mb-5">
-                    { tripList.length &&
+                    {
+                        (!tripList.length && <h5 className="text-center">No Trips Created</h5>)
+                    }
+                    {
                         tripList.map(trip => 
-                            <Link key={trip.id} to={`/MyTrips/${trip.id}`} className="btn btn-outline-dark btn-block">
+                            <Link key={trip.id} to={`/MyTrips/${trip.id}`} className="btn btn-outline-dark btn-block p-3">
                                 {trip.date} {trip.flight}
                             </Link>
                         )
