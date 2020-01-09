@@ -38,8 +38,8 @@ const AgentTripDetails = (props) => {
             </Row>
             <Row>
                 <Col xs="12" className="text-center">
-                    <Link to="/Agent-Trips" className="btn btn-dark btn-block">Return to Trips</Link>
-                    <Link to="/Agents" className="btn btn-outline-dark btn-block">Main Menu</Link>
+                    <Link to="/Agent-Trips" className="btn btn-dark btn-block p-4">Return to Trips</Link>
+                    <Link to="/Agents" className="btn btn-outline-dark btn-block p-4">Main Menu</Link>
                 </Col>
             </Row>
         </Container>

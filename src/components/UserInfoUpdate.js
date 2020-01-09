@@ -106,7 +106,7 @@ const UserForm = (props) =>{
                 <ErrorMessage name="zip" component="div" className="form-text text-danger" />
               </FormGroup>
               <Field id='role' type='hidden' name='role' placeholder='Admin' className='form-control' />
-              <Button type='submit' block className="mt-5">Update</Button>
+              <Button type='submit' block className="mt-5 p-4">Update</Button>
               <Link to="/Welcome" className="btn btn-block btn-outline-dark p-4">Cancel</Link>
             </Form>
           </Formik>

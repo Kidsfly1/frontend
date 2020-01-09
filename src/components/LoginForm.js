@@ -78,7 +78,7 @@ const LoginForm = (props) => {
                                 <Link to="/Register" style={{fontSize: '.9rem', color: 'black'}}>Sign up to use KidsFly for your travels</Link>
                             </div>
                             
-                            <Button color="dark" type="submit" block className="mt-5">Submit</Button>
+                            <Button color="dark" type="submit" block className="mt-5 p-4">Login</Button>
                             
                             <div className="text-center mt-3">
                                 <Link to="/Register-Agent" style={{fontSize: '.9rem', color: 'black'}}>Sign up to be a KidsFly Connection</Link>

@@ -16,8 +16,8 @@ const AgentHome = () => {
                 <Col xs="12" className="text-center">
                     <h2 className="mt-5 mb-5">Welcome, {currentUser.fullname}</h2>
                     <div className="mt-5 mb-5">&nbsp;</div>
-                    <Link to="/Agent-Trips" className="btn btn-dark btn-block mt-5 mb-1"> View Assigned Trips</Link>
-                    <Link to="/Agent-Trips" className="btn btn-block btn-outline-dark"> Completed Trips</Link>
+                    <Link to="/Agent-Trips" className="btn btn-dark btn-block mt-5 mb-1 p-4"> View Assigned Trips</Link>
+                    <Link to="/Agent-Trips" className="btn btn-block btn-outline-dark p-4"> Completed Trips</Link>
                 </Col>
             </Row>
         </Container>

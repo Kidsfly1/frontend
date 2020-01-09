@@ -32,16 +32,18 @@ const AgentTripDetails = (props) => {
             </Row>
             <Row>
                 <Col xs="12" sm={{size: 10, offset: 1}} md={{size: 8, offset: 2}} lg={{size: 6, offset: 3}}>
-                    <div>Date of Trip: <div style={{float: 'right'}}>{theTrip.date}</div></div>
-                    <div>Depature Time: <div style={{float: 'right'}}>{theTrip.departure}</div></div>
-                    <div>Children:<div style={{float: 'right'}}>{theTrip.children}</div></div>
-                    <div>Airport: <div style={{float: 'right'}}>{theTrip.airport}</div></div>
-                    <div>{/* Airline: {theTrip.air} */}</div>
-                    <div>Flight #: <div style={{float: 'right'}}>{theTrip.flight}</div></div>
-                    <div>Carry On: <div style={{float: 'right'}}>{theTrip.carryOn}</div></div>
-                    <div>Agent Request: <div style={{float: 'right'}}>{theTrip.agentReq}</div></div>
-                    <div>Special Needs: <div style={{float: 'right'}}>{theTrip.special}</div></div>
-                    <div>Upgrade: <div style={{float: 'right'}}>{theTrip.upgrades}</div></div>
+                    <div className="p-2" style={{border: '1px solid #1d1c1c'}}>
+                        <div>Date of Trip: <div style={{float: 'right'}}>{theTrip.date}</div></div>
+                        <div>Depature Time: <div style={{float: 'right'}}>{theTrip.departure}</div></div>
+                        <div>Children:<div style={{float: 'right'}}>{theTrip.children}</div></div>
+                        <div>Airport: <div style={{float: 'right'}}>{theTrip.airport}</div></div>
+                        {/* <div>Airline: {theTrip.air}</div> */}
+                        <div>Flight #: <div style={{float: 'right'}}>{theTrip.flight}</div></div>
+                        <div>Carry On: <div style={{float: 'right'}}>{theTrip.carryOn}</div></div>
+                        <div>Agent Request: <div style={{float: 'right'}}>{theTrip.agentReq}</div></div>
+                        <div>Special Needs: <div style={{float: 'right'}}>{theTrip.special}</div></div>
+                        <div>Upgrade: <div style={{float: 'right'}}>{theTrip.upgrades}</div></div>
+                    </div>
                 </Col>
             </Row>
             <Row>
@@ -55,8 +57,8 @@ const AgentTripDetails = (props) => {
                             </>
                         ) : (
                             <>
-                                <Link to="/Agent-Trips" className="btn btn-block btn-outline-dark">Return to Trips</Link>
-                                <Link to="/Agents" className="btn btn-outline-dark btn-block">Main Menu</Link>
+                                <Link to="/Agent-Trips" className="btn btn-block btn-outline-dark p-4">Return to Trips</Link>
+                                <Link to="/Agents" className="btn btn-outline-dark btn-block p-4">Main Menu</Link>
                             </>
                         )
                     }

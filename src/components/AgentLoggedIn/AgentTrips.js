@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 
 import { KidsFlyContext } from '../../context/KidsFlyContext';
 
+import { Icon, InlineIcon } from '@iconify/react';
+import bxRightArrowCircle from '@iconify/icons-bx/bx-right-arrow-circle';
+
 const AgentTrips = (props) => {
     const {currentUser} = useContext(KidsFlyContext);
     const [tripList, setTripList] = useState({});
@@ -27,14 +30,14 @@ const AgentTrips = (props) => {
                 <Col xs="12" sm={{size: 8, offset: 2}} className="mb-5">
                     { tripList.length &&
                         tripList.map(trip => 
-                            <Link key={trip.id} to={'/Agent-Trip-Details/'+trip.id} className="btn btn-outline-dark btn-block">{trip.date} {trip.flight}</Link>
+                            <Link key={trip.id} to={'/Agent-Trip-Details/'+trip.id} className="btn btn-outline-dark btn-block p-4">{trip.date} {trip.flight} <div style={{float: 'right'}}><Icon icon={bxRightArrowCircle} width="16" height="16" /></div></Link>
                         )
                     }
                 </Col>
             </Row>
             <Row>
                 <Col xs="12" sm={{size: 8, offset: 2}}>
-                    <Link to="/Agents" className="btn btn-outline-dark btn-block">Main Menu</Link>
+                    <Link to="/Agents" className="btn btn-dark btn-block p-4">Main Menu</Link>
                 </Col>
             </Row>
         </Container>
