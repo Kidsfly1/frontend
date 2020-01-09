@@ -7,7 +7,7 @@ import { KidsFlyContext } from './context/KidsFlyContext';
 import LoginMain from './components/UserPortal';
 import Register from './components/Register'
 import RegisterConnection from './components/Register_Connection';
-import RegisterAdmin from './components/Register-Admin';
+import RegisterAdmin from './components/Register-Admin-1';
 import FamilyWelcome from './components/FamilyWelcome';
 
 import './App.css';
@@ -23,7 +23,11 @@ import AgentHome from './components/AgentLoggedIn/AgentHome';
 import AgentTrips from './components/AgentLoggedIn/AgentTrips';
 import AgentTripDetails from './components/AgentLoggedIn/AgentTripDetails';
 
-import AdminHome from './components/AdminLoggedIn/AdminHome'
+import AdminHome from './components/AdminLoggedIn/AdminHome';
+import AdminTripRequest from './components/AdminLoggedIn/AdminTripRequest';
+
+//
+import TripDetails from './components/Common/TripDetails'
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState((localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : {});
@@ -46,6 +50,8 @@ const App = (props) => {
           <PrivateRoute path="/Agent-Trip-Details/:id" component={AgentTripDetails} />
 
           <PrivateRoute path="/Admin" component={AdminHome} />
+          <PrivateRoute path="/Admin-Trip-Requests" component={AdminTripRequest} />
+          <PrivateRoute path="/Admin-Trip-Details/:id" component={TripDetails} />
 
           <PrivateRoute path="/Create-Trip" component={CreateTrip} />
           <PrivateRoute path="/Welcome" component={FamilyWelcome} />

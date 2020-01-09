@@ -2,35 +2,40 @@ import React from 'react'
 import { Container, Row, Col } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import { Icon, InlineIcon } from "@iconify/react";
+import bxsUser from '@iconify/icons-bx/bxs-user';
+import bxLogOut from '@iconify/icons-bx/bx-log-out';
 
 
 const Header = (props) => {
     return (
-        <Container id="" fluid={true} style={{backgroundColor: 'black', color: 'white'}} className="pt-2 pb-2">
+        <Container id="" fluid={true} style={{backgroundColor: 'black', color: 'white'}} className="pt-2 pb-2 headerGradient">
             <Row>
-                <Col xs="12">
-                    <Container>
-                        <Row>
-                            <Col xs="4"></Col>
-                            <Col xs="8" className="text-center">
-                                {
-                                    (localStorage.getItem('token') !== null && 
-                                        <h2>KidsFly</h2>
-                                    )
-                                }
-                                {
-                                    (localStorage.getItem('token') === null && 
-                                        <h2>&nbsp;</h2>
-                                    )
-                                }
-                            </Col>
-                            <Col xs="4">
-                                {/* Icon for Account/Logout */}
-                                <a href="#" onClick={() => props.logout()}>X</a>
-                            </Col>
-                        </Row>
-                    </Container>
-                </Col>
+                <Container className="subHeader">
+                    <Row>
+                        <Col xs="2">
+                        </Col>
+                        <Col xs="8" className="text-center">
+                            {
+                                (localStorage.getItem('token') !== null && 
+                                    <h2>KidsFly</h2>
+                                )
+                            }
+                            {
+                                (localStorage.getItem('token') === null && 
+                                    <h2>&nbsp;</h2>
+                                )
+                            }
+                        </Col>
+                        <Col xs="2" className="text-right">
+                            {/* <Icon icon={bxsUser} /> */}
+                            {
+                                (localStorage.getItem('token') !== null && 
+                                <a href="#" onClick={() => props.logout()}><Icon icon={bxLogOut} style={{color: '', height: '24px', width: '24px'}} /></a>
+                                )
+                            }
+                        </Col>
+                    </Row>
+                </Container>
             </Row>
         </Container>
     )

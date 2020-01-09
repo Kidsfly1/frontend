@@ -39,7 +39,9 @@ const LoginForm = (props) => {
                                 .then(res => {
                                     localStorage.setItem('token', res.data.token);
                                     localStorage.setItem('user', JSON.stringify(res.data.user));
+                                    
                                     setCurrentUser(res.data.user)
+
                                     if(res.data.user.role_id === 3){
                                         props.history.push('/Admin');
                                     }else if(res.data.user.role_id === 2){
@@ -77,6 +79,7 @@ const LoginForm = (props) => {
                             </div>
                             
                             <Button color="dark" type="submit" block className="mt-5">Submit</Button>
+                            
                             <div className="text-center mt-3">
                                 <Link to="/Register-Agent" style={{fontSize: '.9rem', color: 'black'}}>Sign up to be a KidsFly Connection</Link>
                             </div>
