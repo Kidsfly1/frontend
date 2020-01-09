@@ -8,7 +8,9 @@ import LoginMain from './components/UserPortal';
 import Register from './components/Register'
 import RegisterConnection from './components/Register_Connection';
 import RegisterAdmin from './components/Register-Admin';
+
 import FamilyWelcome from './components/FamilyWelcome';
+import FamilyTrips from './components/FamilyTrips';
 
 import './App.css';
 
@@ -57,6 +59,7 @@ const App = (props) => {
           <Route path="/Login" component={LoginForm} />
           <Route path="/sign-up" component={Register} />
           <Route path="/UpdateInfo" component={UserInfoUpdate} />
+          <Route path="/Family-Trips" component={FamilyTrips} />
           <Route component={LoginForm} />
           
         </Switch>

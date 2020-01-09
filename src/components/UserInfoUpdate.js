@@ -2,14 +2,14 @@ import React, { useState, useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import { Container, Row, Col, FormGroup, Label, Button } from 'reactstrap';
-import { withFormik, Form, Field} from  'formik';
+import { Formik, Form, Field} from  'formik';
 import * as Yup from 'yup'
 import Axios from 'axios';
 import './register.css'
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { KidsFlyContext } from '../context/KidsFlyContext';
 
-const UserForm = ({props, values, touched, errors, status, role}) =>{
+const UserForm = (props) =>{
   const [user, setuser] = useState([]);
   const {currentUser, setCurrentUser} = useContext(KidsFlyContext);
   // useEffect(() =>{
@@ -22,7 +22,32 @@ const UserForm = ({props, values, touched, errors, status, role}) =>{
     <Container>
       <Row>
         <Col xs="12" sm={{ size: 10, offset: 1}} md={{size: 8, offset: 2}} lg={{size: 6, offset: 3}}>
-          <Form>
+          <Formik
+            initialValues={{fullname: '', phone: '', address: '', state: '', zip: 0}}
+            onSubmit={(values) =>{
+              console.log(values);
+              console.log(currentUser);
+              
+              axiosWithAuth()
+              .put(`/user/${currentUser.id}`, values)
+              .then(res =>{
+                setCurrentUser({...currentUser, fullname: values.fullname, phone: values.phone, address: values.address, state: values.state, zip: values.zip})
+                
+                console.log(currentUser);
+                if (currentUser.role_id === 1){
+                  props.history.push('/Welcome')
+                }
+                if (currentUser.role_id === 2){
+                  props.history.push('/Agent')
+                }
+                console.log(res);
+              })
+              .catch(err => {
+                console.log(err)});
+            }
+          }
+          >
+            <Form>
             <div className='iFormContainer'>
               {/* <FormGroup className='FGroup'>
                 <Label htmlFor='username'>UserName:</Label>
@@ -57,6 +82,8 @@ const UserForm = ({props, values, touched, errors, status, role}) =>{
             </div>
             
           </Form>
+          </Formik>
+
         </Col>
       </Row>
     </Container>
@@ -64,43 +91,44 @@ const UserForm = ({props, values, touched, errors, status, role}) =>{
 
 };
 
-const FormikUserForm = withFormik({
-  mapPropsToValues({ fullname, phone, address, state, zip}) {
-    return {
-      fullname: fullname || '',
-      phone: phone || '',
-      address: address || '',
-      state: state || '',
-      zip: zip || 0
-    };
-  },
-  validationSchema: Yup.object().shape({
-    fullname: Yup.string().required().max(225),
-    phone: Yup.string().required().max(20),
-    address: Yup.string().required().max(225),
-    state: Yup.string().required(),
-    zip: Yup.number().required().positive().integer(),
-  }),
+// const FormikUserForm = withFormik({
 
-  handleSubmit(values, { props, currentUser, setCurrentUser, setStatus, resetForm}){
-    console.log(values);
-    axiosWithAuth()
-    .post(`/user/${currentUser.id}`, values)
-    .then(res =>{
-      setCurrentUser(res.data.user)
-      if (currentUser.role_id === 1){
-        props.history.push('/Welcome')
-      }
-      if (currentUser.role_id === 2){
-        props.history.push('/Agent')
-      }
-      console.log(res);
-      resetForm();
-    })
-    .catch(err => {
-      alert(err.res)
-      console.log(err.res)});
-  }
-})(UserForm);
+//   mapPropsToValues({ fullname, phone, address, state, zip}) {
+//     return {
+//       fullname: fullname || '',
+//       phone: phone || '',
+//       address: address || '',
+//       state: state || '',
+//       zip: zip || 0
+//     };
+//   },
+//   validationSchema: Yup.object().shape({
+//     fullname: Yup.string().required().max(225),
+//     phone: Yup.string().required().max(20),
+//     address: Yup.string().required().max(225),
+//     state: Yup.string().required(),
+//     zip: Yup.number().required().positive().integer(),
+//   }),
 
-export default FormikUserForm;
+//   handleSubmit(values, { props, setCurrentUser, currentUser}){
+    
+//     console.log(currentUser);
+//     axiosWithAuth()
+//     .post(`/user/${currentUser.id}`, values)
+//     .then(res =>{
+//       setCurrentUser(res.data.user)
+//       if (currentUser.role_id === 1){
+//         props.history.push('/Welcome')
+//       }
+//       if (currentUser.role_id === 2){
+//         props.history.push('/Agent')
+//       }
+//       console.log(res);
+//     })
+//     .catch(err => {
+//       alert(err.res)
+//       console.log(err.res)});
+//   }
+// })(UserForm);
+
+export default UserForm;
