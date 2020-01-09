@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import { Container, Row, Col, FormGroup, Label, Button } from 'reactstrap';
@@ -9,12 +9,12 @@ import './register.css'
 
 const UserForm = ({props, values, touched, errors, status, role}) =>{
   const [user, setuser] = useState([]);
-  // useEffect(() =>{
-  //   console.log(status);
-  //   status && setuser(user => [...user, status]);
-  // }, [status]);
+  useEffect(() =>{
+    console.log(status);
+    status && setuser(user => [...user, status]);
+  }, [status]);
 
-  //console.log(user);
+  console.log(user);
   return (
     <Container>
       <Row form>
