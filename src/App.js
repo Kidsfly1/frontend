@@ -23,6 +23,7 @@ import './App.css';
 import PrivateRoute from './components/PrivateRoute';
 
 import Header from './components/Header';
+import Footer from './components/Footer';
 import LoginForm from './components/LoginForm';
 import Logout from './components/Logout';
 
@@ -77,7 +78,7 @@ const App = (props) => {
           <Route component={LoginForm} />
           
         </Switch>
-      
+      <Footer/>
       </KidsFlyContext.Provider>
     </>
   )

@@ -4,31 +4,24 @@ import { Link } from 'react-router-dom'
 import { Icon, InlineIcon } from "@iconify/react";
 import bxsUser from '@iconify/icons-bx/bxs-user';
 import bxLogOut from '@iconify/icons-bx/bx-log-out';
-import bxHome from '@iconify/icons-bx/bx-home';
-
-
-
+import bxHelpCircle from '@iconify/icons-bx/bx-help-circle';
 
 const Header = (props) => {
     return (
+      <div className="fixed-bottom">
+        <div className="GetHelp text-right mr-1">
+          <span className="GetHelp"><Icon icon={bxHelpCircle} /> Get Help</span>
+        </div>
         <Container id="" fluid={true} style={{backgroundColor: 'black', color: 'white'}} className="pt-2 pb-2 headerGradient">
             <Row>
                 <Container className="subHeader">
                     <Row>
                         <Col xs="2">
-                            {
-                                (localStorage.getItem('token') !== null && 
-                                    <>
-                                        {/* <Link to="/Welcome"><Icon icon={bxHome} style={{color: '', height: '24px', width: '24px'}} /></Link> */}
-                                        <Link to="/UpdateInfo"><Icon icon={bxsUser} style={{color: '', height: '24px', width: '24px'}} /></Link>
-                                    </>
-                                )
-                            }
                         </Col>
                         <Col xs="8" className="text-center">
                             {
                                 (localStorage.getItem('token') !== null && 
-                                    <h2>KidsFly</h2>
+                                    <h2>&nbsp;</h2>
                                 )
                             }
                             {
@@ -37,18 +30,11 @@ const Header = (props) => {
                                 )
                             }
                         </Col>
-                        <Col xs="2" className="text-right">
-                            {/* <Icon icon={bxsUser} /> */}
-                            {
-                                (localStorage.getItem('token') !== null && 
-                                    <Link to="/Logout"><Icon icon={bxLogOut} style={{color: '', height: '24px', width: '24px'}} /></Link>
-                                )
-                            }
-                        </Col>
                     </Row>
                 </Container>
             </Row>
         </Container>
+    </div>
     )
 }
 
