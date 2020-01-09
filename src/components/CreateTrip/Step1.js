@@ -18,11 +18,7 @@ const Step1 = (props) => {
                 <Col xs="12" sm={{size: 4, offset: 2}}>
                     <FormGroup>
                         <Label htmlFor="date">Departure Date</Label>
-                        <Field id="date" 
-                            name="date" 
-                            type="text"
-                            className="form-control"
-                            placeholder="Departure Date" />
+                        <Field id="date" name="date" type="text" className="form-control" placeholder="Departure Date" />
                         {/* {touched.departureDate && errors.departureDate ? <small id="" className="form-text text-danger">{errors.departureDate}</small> : null} */}
                     </FormGroup>
                     <FormGroup>
@@ -54,16 +50,16 @@ const Step1 = (props) => {
                         {/* {touched.children && errors.children ? <small id="" className="form-text text-danger">{errors.children}</small> : null} */}
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor="agentReq">Preferred Agend Request (Male or Female)</Label>
+                        <Label htmlFor="agentReq">Preferred Agent</Label>
                         <Field as="select" id="agentReq" name="agentReq" className="form-control">
                             <option value="" disabled hidden></option>
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
                         </Field>
                         {/* {touched.preferred && errors.preferred ? <small id="" className="form-text text-danger">{errors.preferred}</small> : null} */}
                     </FormGroup>
                     <FormGroup>
-                        <Label htmlFor="upgrades">Do you have any special Needs?</Label>
+                        <Label htmlFor="upgrades">Do you have any special needs?</Label>
                         <Field id="upgrades" name="upgrades" type="text" placeholder="" className="form-control" />
                         {/* {touched.special && errors.special ? <small id="" className="form-text text-danger">{errors.special}</small> : null} */}
                     </FormGroup>    

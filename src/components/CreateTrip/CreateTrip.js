@@ -72,10 +72,11 @@ const CreateTrip = () => {
                         <Step3 currentStep={currentStep} handleChange={handleChange} tripDetails={values} tripErrors={errors} tripTouched={touched} tripStatus={status} />
                         <Step4 currentStep={currentStep} tripDetails={values} />
                     
-                        {currentStep === 2 && <Button type="submit" block className="mt-5 mb-1">Book Trip</Button>}
+                        {currentStep === 2 && <Button type="submit" color="dark" block className="mt-5 mb-1">Book Trip</Button>}
                         
-                        {currentStep < 2 && currentStep !== 2 && <Button onClick={() => _next()} block className="mt-5 mb-1">Continue</Button>}
-                        {currentStep !== 1 && currentStep !== 3 && <Button onClick={() => _prev()} block>Go Back</Button>}
+                        {currentStep < 2 && currentStep !== 2 && <Button onClick={() => _next()} color="dark" block className="mt-5 mb-1">Continue</Button>}
+                        {currentStep !== 1 && currentStep !== 3 && <Button onClick={() => _prev()} color="dark" block>Go Back</Button>}
+                        {currentStep === 1 && <Link to="/Welcome" className="btn btn-outline-dark btn-block mb-1">Cancel</Link>}
 
                         {currentStep === 3 && <Link to="/Welcome" className="btn btn-dark btn-block mt-5 mb-1">Main Menu</Link>}
                     </Form>
