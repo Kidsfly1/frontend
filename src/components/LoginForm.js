@@ -42,9 +42,9 @@ const LoginForm = (props) => {
                                     
                                     setCurrentUser(res.data.user)
 
-                                    if(res.data.user.role_id === 3){
+                                    if(res.data.user.role === 'admin'){
                                         props.history.push('/Admin');
-                                    }else if(res.data.user.role_id === 2){
+                                    }else if(res.data.user.role === 'agent'){
                                         if(res.data.user.fullname == null){
                                             props.history.push('/UpdateInfo');
                                         }else{
