@@ -38,7 +38,7 @@ const AdminTripRequest = (props) => {
             </Row>
             <Row>
                 <Col xs="12" sm={{size: 8, offset: 2}}>
-                    <Link to={`/Admin`} className="btn btn-dark btn-block">Main Menu</Link>
+                    <Link to={`/Welcome`} className="btn btn-dark btn-block p-4">Main Menu</Link>
                 </Col>
             </Row>
         </Container>
