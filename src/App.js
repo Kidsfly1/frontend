@@ -41,24 +41,9 @@ import TripDetails from './components/Common/TripDetails'
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState((localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : {});
 
-  const updateLoggedInUser = (info) => {
-    //console.log(info)
-    setCurrentUser(
-      {...currentUser, 
-        fullname: info.fullname, 
-        phone: info.phone, 
-        address: info.address, 
-        state: info.state, 
-        zip: info.zip
-      }
-    )
-    console.log(JSON.stringify(currentUser))
-    //localStorage.setItem('user', JSON.stringify(currentUser))
-  }
-
   return (
     <>
-      <KidsFlyContext.Provider value={{currentUser, setCurrentUser, updateLoggedInUser}}>
+      <KidsFlyContext.Provider value={{currentUser, setCurrentUser}}>
         <Header />
 
         <Switch>
