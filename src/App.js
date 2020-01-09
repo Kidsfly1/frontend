@@ -26,13 +26,20 @@ import UserInfoUpdate from './components/UserInfoUpdate'
 
 import AdminHome from './components/AdminLoggedIn/AdminHome'
 
-function App() {
+const App = (props) => {
   const [currentUser, setCurrentUser] = useState((localStorage.getItem('user')) ? JSON.parse(localStorage.getItem('user')) : {});
+
+  const logMeOut = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    console.log(props)
+    //props.history.push('/Login');
+  }
 
   return (
     <>
       <KidsFlyContext.Provider value={{currentUser, setCurrentUser}}>
-        <Header />
+        <Header logout={logMeOut} />
 
         <Switch>
           <PrivateRoute path="/Agents" component={AgentHome} />
