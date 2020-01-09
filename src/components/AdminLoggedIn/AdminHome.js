@@ -7,6 +7,8 @@ import { KidsFlyContext } from '../../context/KidsFlyContext';
 const AdminHome = (props) => {
     const { currentUser } = useContext(KidsFlyContext);
 
+    console.log(props)
+
     if (currentUser.role_id === 2) {
         props.history.push('/Agents');
         return null;
@@ -18,13 +20,13 @@ const AdminHome = (props) => {
     return (
         <Container>
             <Row>
-                <Col xs="12" className="text-center">
+                <Col xs="12" sm={{size: 8, offset: 2}} className="mb-5 text-center">
                     <h2 className="mt-5 mb-5">Welcome, {currentUser.fullname}</h2>
                     <div className="mt-5 mb-5">&nbsp;</div>
                     <Link to="/Admin-Trip-Requests" className="btn btn-dark btn-block mt-5 btn-lg"> View New Requests </Link>
-                    <Link to="/Admin-Create-Trip" className="btn btn-block btn-outline-dark btn-lg"> Create Trip </Link>
+                    {/* <Link to="/Admin-Create-Trip" className="btn btn-block btn-outline-dark btn-lg"> Create Trip </Link>
                     <Link to="/Agent-Assign-Trip" className="btn btn-block btn-outline-dark btn-lg"> Assign Trip </Link>
-                    <Link to="/Agent-Cancel-Trip" className="btn btn-block btn-outline-dark btn-lg"> Cancel Trip </Link>
+                    <Link to="/Agent-Cancel-Trip" className="btn btn-block btn-outline-dark btn-lg"> Cancel Trip </Link> */}
                 </Col>
             </Row>
         </Container>

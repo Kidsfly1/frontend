@@ -31,7 +31,7 @@ const UserForm = ({values, touched, errors, status, role}) =>{
         <Field id='state' type='text' name='state' placeholder='State/Prov'/>
         <label htmlFor="zip">Zip:</label>
         <Field id='zip' type='number' name='zip' placeholder='ZipCode'/>
-        <Field id='role_id' type='hidden' name='role_id' placeholder='2' />
+        <Field id='role_id' type='hidden' name='role_id' placeholder='3' />
         <button type='submit'>Sign Up</button>
       </Form>
     </div>
@@ -55,11 +55,11 @@ const FormikUserForm = withFormik({
   validationSchema: Yup.object().shape({
     username: Yup.string().required('Username is required.').max(225),
     password: Yup.string().required('Password is required. Min(8 Characters)').min(8),
-    fullname: Yup.string().required('Your full name is required.').max(225),
-    phone: Yup.string().required('Please Enter a valid phone number dashs are not required.').max(20),
-    address: Yup.string().required('Please Enter a valid address.').max(225),
-    state: Yup.string().required('Please Enter your State or Providence.'),
-    zip: Yup.number().required().positive().integer(),
+    fullname: Yup.string().max(225),
+    phone: Yup.string().max(20),
+    address: Yup.string().max(225),
+    state: Yup.string(),
+    zip: Yup.number().positive().integer(),
   }),
 
   handleSubmit(values, {setStatus, resetForm}){

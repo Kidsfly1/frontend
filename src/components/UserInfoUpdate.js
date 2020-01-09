@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import { Container, Row, Col, FormGroup, Label, Button } from 'reactstrap';
@@ -11,36 +11,52 @@ import { KidsFlyContext } from '../context/KidsFlyContext';
 
 const UserForm = (props) =>{
   const [user, setuser] = useState([]);
-  const {currentUser, setCurrentUser} = useContext(KidsFlyContext);
+
+  const {currentUser, setCurrentUser, updateLoggedInUser} = useContext(KidsFlyContext);
+
   // useEffect(() =>{
   //   console.log(status);
   //   status && setuser(user => [...user, status]);
   // }, [status]);
 
   //console.log(user);
+
+  useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(currentUser))
+  },[currentUser]);
+  
   return (
     <Container>
+      <Row>
+        <Col xs="12" className="text-center">
+          <h2 className="mt-5 mb-2">Update Your Info</h2>
+        </Col>
+      </Row>
       <Row>
         <Col xs="12" sm={{ size: 10, offset: 1}} md={{size: 8, offset: 2}} lg={{size: 6, offset: 3}}>
           <Formik
             initialValues={{fullname: '', phone: '', address: '', state: '', zip: 0}}
-            onSubmit={(values) =>{
-              console.log(values);
-              console.log(currentUser);
-              
+            onSubmit={(values) => {
               axiosWithAuth()
               .put(`/user/${currentUser.id}`, values)
               .then(res =>{
-                setCurrentUser({...currentUser, fullname: values.fullname, phone: values.phone, address: values.address, state: values.state, zip: values.zip})
                 
-                console.log(currentUser);
+                setCurrentUser(
+                  {...currentUser, 
+                    fullname: values.fullname, 
+                    phone: values.phone, 
+                    address: values.address, 
+                    state: values.state, 
+                    zip: values.zip
+                  }
+                )
+                
                 if (currentUser.role_id === 1){
                   props.history.push('/Welcome')
                 }
                 if (currentUser.role_id === 2){
-                  props.history.push('/Agent')
+                  props.history.push('/Agents')
                 }
-                console.log(res);
               })
               .catch(err => {
                 console.log(err)});
@@ -48,15 +64,6 @@ const UserForm = (props) =>{
           }
           >
             <Form>
-            <div className='iFormContainer'>
-              {/* <FormGroup className='FGroup'>
-                <Label htmlFor='username'>UserName:</Label>
-                <Field id='username' type='text' name='username' placeholder='User@gmail.com' className='txtbox'/>
-              </FormGroup>
-              <FormGroup className='FGroup'>
-                <Label htmlFor='password'>Password: (Must contain at least 8 characters)</Label>
-                <Field id='password' type='password' name='password' placeholder='Enter password here.' className='txtbox'/>
-              </FormGroup> */}
               <FormGroup className='FGroup mt-5'>
                 <Label htmlFor='fullname'>Full Name:</Label>
                 <Field id='fullname' type='text' name='fullname' placeholder='First Last' className='form-control'/>
@@ -79,11 +86,8 @@ const UserForm = (props) =>{
               </FormGroup>
               <Field id='role_id' type='hidden' name='role_id' placeholder='1' className='form-control' />
               <Button type='submit' block className="mt-5">Submit</Button>
-            </div>
-            
-          </Form>
+            </Form>
           </Formik>
-
         </Col>
       </Row>
     </Container>

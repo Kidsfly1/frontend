@@ -33,3 +33,8 @@ label {
   /* Dark Grey */
   color: #1D1C1C;
 }
+
+.subHeader svg{
+  color: #fff;
+  margin-top: 5px;
+}
