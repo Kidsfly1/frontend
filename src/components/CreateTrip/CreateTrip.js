@@ -10,6 +10,7 @@ import Step3 from './Step3';
 import Step4 from './Step4';
 
 const initialValues = {
+    id: '',
     date: '',
     departure: '',
     airport: '',
@@ -18,8 +19,7 @@ const initialValues = {
     children: '',
     agentReq: '',
     special: '',
-    upgrades: '',
-    //selectedAgent: ''
+    upgrades: ''
   }
 
 const CreateTrip = (props) => {
@@ -38,7 +38,9 @@ const CreateTrip = (props) => {
         if(props.computedMatch.params.id) {
             const tripId = props.computedMatch.params.id;
             axiosWithAuth().get(`/trip/${tripId}`)
-                .then(res => console.log(res))
+                .then(res => {
+                    setTripForm(res.data)
+                })
                 .catch(err => console.log(err))
         }
     }, [])
@@ -57,6 +59,7 @@ const CreateTrip = (props) => {
                 <Col xs="12" sm={{size: 10, offset: 2}}></Col>
             </Row>
             <Formik initialValues={tripForm}
+                enableReinitialize={true}
                 validate={values => {
                     const errors ={};
                     if(!values.date) {
@@ -65,14 +68,22 @@ const CreateTrip = (props) => {
                     return errors
                 }}
                 onSubmit={(values, { props, setSubmitting }) => {
-                    // console.log(values)
                     setSubmitting(true)
-                    axiosWithAuth().post('/trip', values)
+                    if(values.id !== null){
+                        axiosWithAuth().put(`/trip/${values.id}`, values)
+                            .then(res => {
+                                setCurrentStep(3)
+                                setSubmitting(false)
+                            })
+                            .catch(err => console.log(err))
+                    }else{
+                        axiosWithAuth().post('/trip', values)
                         .then(res => {
                             setCurrentStep(3)
                             setSubmitting(false)
                         })
                         .catch(err => console.log(err.message))
+                    }
                 }}
             >
                 {({values, errors, touched, status}) => (
@@ -82,7 +93,7 @@ const CreateTrip = (props) => {
                         <Step3 currentStep={currentStep} handleChange={handleChange} tripDetails={values} tripErrors={errors} tripTouched={touched} tripStatus={status} />
                         <Step4 currentStep={currentStep} tripDetails={values} />
                     
-                        {currentStep === 2 && <Button type="submit" color="dark" block className="mt-5 mb-1 p-4">Book Trip</Button>}
+                        {currentStep === 2 && <Button type="submit" color="dark" block className="mt-5 mb-1 p-4">Save Trip</Button>}
                         
                         {currentStep < 2 && currentStep !== 2 && <Button onClick={() => _next()} color="dark" block className="mt-5 mb-1 p-4">Continue</Button>}
                         {currentStep !== 1 && currentStep !== 3 && <Button onClick={() => _prev()} color="dark" block className="p-3">Go Back</Button>}

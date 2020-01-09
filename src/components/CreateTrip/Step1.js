@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, FormGroup, Label, Input } from 'reactstrap';
-import { Field, ErrorMessage } from 'formik'
+import { Field, ErrorMessage } from 'formik';
+
 const Step1 = (props) => {
 
     if(props.currentStep !== 1) {
@@ -11,7 +12,13 @@ const Step1 = (props) => {
         <>
             <Row>
                 <Col xs="12" className="text-center">
-                    <h2 className="mt-5 mb-5">Create Trip</h2>
+                    {
+                        (props.tripDetails.id) ? (
+                            <h2 className="mt-5 mb-5">Update Trip</h2>
+                        ) : (
+                            <h2 className="mt-5 mb-5">Create Trip</h2>
+                        )
+                    }
                 </Col>
             </Row>
             <Row form>
