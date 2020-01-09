@@ -45,14 +45,14 @@ const Step1 = (props) => {
                 <Col xs="12" sm="4">
                     <FormGroup>
                         <Label htmlFor="carryOn">Total Bags</Label>
-                        <Field id="carryOn" name="carryOn" type="text" placeholder="0" className="form-control" />
+                        <Field id="carryOn" name="carryOn" type="number" placeholder="0" className="form-control" />
                         {/* {touched.carryOn && errors.carryOn ? <small id="" className="form-text text-danger">{errors.carryOn}</small> : null} */}
                     </FormGroup>
-                    {/* <FormGroup>
+                    <FormGroup>
                         <Label htmlFor="children">Children</Label>
-                        <Field id="children" name="children" type="text" placeholder="0" className="form-control" />
-                        //{touched.children && errors.children ? <small id="" className="form-text text-danger">{errors.children}</small> : null}
-                    </FormGroup> */}
+                        <Field id="children" name="children" type="number" placeholder="0" className="form-control" />
+                        {/* {touched.children && errors.children ? <small id="" className="form-text text-danger">{errors.children}</small> : null} */}
+                    </FormGroup>
                     <FormGroup>
                         <Label htmlFor="agentReq">Preferred Agend Request (Male or Female)</Label>
                         <Field as="select" id="agentReq" name="agentReq" type="text" placeholder="preferred" className="form-control">
