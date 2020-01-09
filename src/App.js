@@ -78,7 +78,7 @@ const App = (props) => {
           <Route component={LoginForm} />
           
         </Switch>
-      <Footer className='fixed-bottom'/>
+      <Footer/>
       </KidsFlyContext.Provider>
     </>
   )
