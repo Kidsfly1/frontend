@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { Icon, InlineIcon } from "@iconify/react";
 import bxsUser from '@iconify/icons-bx/bxs-user';
 import bxLogOut from '@iconify/icons-bx/bx-log-out';
+import bxHome from '@iconify/icons-bx/bx-home';
+
 
 
 
@@ -14,6 +16,14 @@ const Header = (props) => {
                 <Container className="subHeader">
                     <Row>
                         <Col xs="2">
+                            {
+                                (localStorage.getItem('token') !== null && 
+                                    <>
+                                        {/* <Link to="/Welcome"><Icon icon={bxHome} style={{color: '', height: '24px', width: '24px'}} /></Link> */}
+                                        <Link to="/UpdateInfo"><Icon icon={bxsUser} style={{color: '', height: '24px', width: '24px'}} /></Link>
+                                    </>
+                                )
+                            }
                         </Col>
                         <Col xs="8" className="text-center">
                             {
