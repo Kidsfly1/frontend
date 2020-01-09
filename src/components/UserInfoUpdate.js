@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import { Container, Row, Col, FormGroup, Label, Button } from 'reactstrap';
-import { Formik, Form, Field} from  'formik';
+import { Formik, Form, Field, ErrorMessage} from  'formik';
 import * as Yup from 'yup'
 import Axios from 'axios';
 import './register.css'
@@ -13,13 +13,6 @@ const UserForm = (props) =>{
   const [user, setuser] = useState([]);
 
   const {currentUser, setCurrentUser, updateLoggedInUser} = useContext(KidsFlyContext);
-
-  // useEffect(() =>{
-  //   console.log(status);
-  //   status && setuser(user => [...user, status]);
-  // }, [status]);
-
-  //console.log(user);
 
   useEffect(() => {
     localStorage.setItem('user', JSON.stringify(currentUser))
@@ -36,6 +29,25 @@ const UserForm = (props) =>{
         <Col xs="12" sm={{ size: 10, offset: 1}} md={{size: 8, offset: 2}} lg={{size: 6, offset: 3}}>
           <Formik
             initialValues={{fullname: '', phone: '', address: '', state: '', zip: 0}}
+            validate={values => {
+              const errors = {};
+              if(!values.fullname){
+                errors.fullname = "Please enter your full name, middle names not required.";
+              }
+              if(!values.phone){
+                errors.phone = "Please enter a phone number that you may be contacted at.";
+              }
+              if(!values.address){
+                errors.address = "Please enter your street address \"123 N 200 E City\"";
+              }
+              if(!values.state){
+                errors.state = "Please enter valid State name or Providence name."
+              }
+              if(values.zip = 0){
+                errors.state = "Please enter your zip code, extention not required"
+              }
+              return errors;
+            }}
             onSubmit={(values) => {
               axiosWithAuth()
               .put(`/user/${currentUser.id}`, values)
@@ -71,22 +83,27 @@ const UserForm = (props) =>{
               <FormGroup className='FGroup mt-5'>
                 <Label htmlFor='fullname'>Full Name:</Label>
                 <Field id='fullname' type='text' name='fullname' placeholder='First Last' className='form-control'/>
+                <ErrorMessage name="fullname" component="div" className="form-text text-danger" />
               </FormGroup>
               <FormGroup className='FGroup'>
                 <Label htmlFor='phone'>Phone: Dashes are not required</Label>
                 <Field id='phone' type='text' name='phone' placeholder="(123)-456-7890" className='form-control'/>
+                <ErrorMessage name="phone" component="div" className="form-text text-danger" />
               </FormGroup>
               <FormGroup className='FGroup'>
                 <Label htmlFor='address'>Street Address:</Label>
                 <Field id='address' type='text' name='address' placeholder='00N 00E city' className='form-control'/>
+                <ErrorMessage name="address" component="div" className="form-text text-danger" />
               </FormGroup>
               <FormGroup className='FGroup'>
                 <Label htmlFor='state'>State/Prov:</Label>
                 <Field id='state' type='text' name='state' placeholder='State/Prov' className='form-control'/>
+                <ErrorMessage name="state" component="div" className="form-text text-danger" />
               </FormGroup>
               <FormGroup className='FGroup'>
                 <Label htmlFor="zip">Zip:</Label>
                 <Field id='zip' type='number' name='zip' placeholder='ZipCode' className='form-control' />
+                <ErrorMessage name="zip" component="div" className="form-text text-danger" />
               </FormGroup>
               <Field id='role' type='hidden' name='role' placeholder='Admin' className='form-control' />
               <Button type='submit' block className="mt-5">Submit</Button>
@@ -98,45 +115,5 @@ const UserForm = (props) =>{
   );
 
 };
-
-// const FormikUserForm = withFormik({
-
-//   mapPropsToValues({ fullname, phone, address, state, zip}) {
-//     return {
-//       fullname: fullname || '',
-//       phone: phone || '',
-//       address: address || '',
-//       state: state || '',
-//       zip: zip || 0
-//     };
-//   },
-//   validationSchema: Yup.object().shape({
-//     fullname: Yup.string().required().max(225),
-//     phone: Yup.string().required().max(20),
-//     address: Yup.string().required().max(225),
-//     state: Yup.string().required(),
-//     zip: Yup.number().required().positive().integer(),
-//   }),
-
-//   handleSubmit(values, { props, setCurrentUser, currentUser}){
-    
-//     console.log(currentUser);
-//     axiosWithAuth()
-//     .post(`/user/${currentUser.id}`, values)
-//     .then(res =>{
-//       setCurrentUser(res.data.user)
-//       if (currentUser.role_id === 1){
-//         props.history.push('/Welcome')
-//       }
-//       if (currentUser.role_id === 2){
-//         props.history.push('/Agent')
-//       }
-//       console.log(res);
-//     })
-//     .catch(err => {
-//       alert(err.res)
-//       console.log(err.res)});
-//   }
-// })(UserForm);
 
 export default UserForm;
