@@ -15,6 +15,7 @@ import RegisterAdmin from './components/Register-Admin-1';
 
 import FamilyWelcome from './components/FamilyWelcome';
 import FamilyTrips from './components/FamilyTrips';
+import MyTrips from './components/MyTrips';
 
 import './App.css';
 
@@ -58,6 +59,7 @@ const App = (props) => {
 
           <PrivateRoute path="/Create-Trip" component={CreateTrip} />
           <PrivateRoute path="/Welcome" component={FamilyWelcome} />
+          <PrivateRoute path="/MyTrips" component={MyTrips}/>
 
           {/* Fix this with a single function ... later */}
           <Route path="/Logout" component={Logout} />
