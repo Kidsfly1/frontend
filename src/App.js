@@ -47,6 +47,7 @@ function App() {
           <Route path="/Register-Agent" component={RegisterConnection} />
           <Route path="/Register-Admin" component={RegisterAdmin} />
           <Route path="/Login" component={LoginForm} />
+          <Route path="/sign-up" component={Register} />
           <Route component={LoginForm} />
         </Switch>
       

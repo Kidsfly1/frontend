@@ -1,0 +1,22 @@
+.iFormContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4vh 10% 0 10%;
+  
+}
+
+/* .FGroup{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+Button{
+  width: 40%;
+}
+
+Form{
+  width: 40%;
+} */
