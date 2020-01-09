@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import { Container, Row, Col, Button } from 'reactstrap';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
@@ -7,7 +8,6 @@ import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
 import Step4 from './Step4';
-import { Link } from 'react-router-dom';
 
 const initialValues = {
     date: '',
@@ -17,6 +17,7 @@ const initialValues = {
     carryOn: '',
     children: '',
     agentReq: '',
+    special: '',
     upgrades: '',
     //selectedAgent: ''
   }
@@ -72,13 +73,13 @@ const CreateTrip = () => {
                         <Step3 currentStep={currentStep} handleChange={handleChange} tripDetails={values} tripErrors={errors} tripTouched={touched} tripStatus={status} />
                         <Step4 currentStep={currentStep} tripDetails={values} />
                     
-                        {currentStep === 2 && <Button type="submit" color="dark" block className="mt-5 mb-1">Book Trip</Button>}
+                        {currentStep === 2 && <Button type="submit" color="dark" block className="mt-5 mb-1 p-4">Book Trip</Button>}
                         
-                        {currentStep < 2 && currentStep !== 2 && <Button onClick={() => _next()} color="dark" block className="mt-5 mb-1">Continue</Button>}
+                        {currentStep < 2 && currentStep !== 2 && <Button onClick={() => _next()} color="dark" block className="mt-5 mb-1 p-4">Continue</Button>}
                         {currentStep !== 1 && currentStep !== 3 && <Button onClick={() => _prev()} color="dark" block>Go Back</Button>}
-                        {currentStep === 1 && <Link to="/Welcome" className="btn btn-outline-dark btn-block mb-1">Cancel</Link>}
+                        {currentStep === 1 && <Link to="/Welcome" className="btn btn-outline-dark btn-block mb-1 p-4">Cancel</Link>}
 
-                        {currentStep === 3 && <Link to="/Welcome" className="btn btn-dark btn-block mt-5 mb-1">Main Menu</Link>}
+                        {currentStep === 3 && <Link to="/Welcome" className="btn btn-dark btn-block mt-5 mb-1 p-4">Main Menu</Link>}
                     </Form>
                 )}
             </Formik>

@@ -22,7 +22,7 @@ const UserForm = (props) =>{
     <Container>
       <Row>
         <Col xs="12" className="text-center">
-          <h2 className="mt-5 mb-2">Update Your Info</h2>
+          <h2 className="mt-5 mb-2">Account Info</h2>
         </Col>
       </Row>
       <Row>
@@ -106,7 +106,8 @@ const UserForm = (props) =>{
                 <ErrorMessage name="zip" component="div" className="form-text text-danger" />
               </FormGroup>
               <Field id='role' type='hidden' name='role' placeholder='Admin' className='form-control' />
-              <Button type='submit' block className="mt-5">Submit</Button>
+              <Button type='submit' block className="mt-5">Update</Button>
+              <Link to="/Welcome" className="btn btn-block btn-outline-dark p-4">Cancel</Link>
             </Form>
           </Formik>
         </Col>
