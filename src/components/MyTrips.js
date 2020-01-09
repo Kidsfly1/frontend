@@ -27,13 +27,13 @@ const AdminTripRequest = (props) => {
             </Row>
             <Row>
                 <Col xs="12" sm={{size: 8, offset: 2}} className="mb-5">
-                    {/* { tripList.length &&
+                    { tripList.length &&
                         tripList.map(trip => 
-                            <Link key={trip.id} to={`/Admin-Trip-Details/${trip.id}`} className="btn btn-outline-dark btn-block">
+                            <Link key={trip.id} to={`/MyTrips/${trip.id}`} className="btn btn-outline-dark btn-block">
                                 {trip.date} {trip.flight}
                             </Link>
                         )
-                    } */}
+                    }
                 </Col>
             </Row>
             <Row>
