@@ -17,11 +17,11 @@ const LoginForm = (props) => {
         <Container>
             <Row>
                 <Col xs="12" className="text-center mt-5 mb-5">
-                    <h1>kidsfly</h1>
+                    <h1>Kidsfly</h1>
                 </Col>
             </Row>
             <Row>
-                <Col xs="12" sm={{ size: 4, offset: 4}}>
+                <Col xs="12" sm={{ size: 10, offset: 1}} md={{size: 8, offset: 2}} lg={{size: 6, offset: 3}}>
                     <Formik
                         initialValues={{username: '', password: ''}}
                         validate={values => {
@@ -43,10 +43,19 @@ const LoginForm = (props) => {
                                     if(res.data.user.role_id === 3){
                                         props.history.push('/Admin');
                                     }else if(res.data.user.role_id === 2){
-                                        props.history.push('/Agents');
-                                    }else(
-                                        props.history.push('/Create-Trip')
-                                    )
+                                        if(res.data.user.fullname == null){
+                                            props.history.push('/UpdateInfo');
+                                        }else{
+                                            props.history.push('/Agents');
+                                        }
+                                    }else{
+                                        if(res.data.user.fullname == null){
+                                            props.history.push('/UpdateInfo');
+                                        }else{
+                                            props.history.push('/Create-Trip')
+                                        }
+                                        
+                                    }
                                 })
                                 .catch(err => console.log('Error: ', err))
                         }}
