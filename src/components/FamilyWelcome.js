@@ -15,7 +15,6 @@ const FamWelcome = ({values, touched, errors, status}) =>{
       <Form>
         <div className='topbar'>
           <img/>
-          <h1>KidsFly</h1>
           <img/>
         </div>
         <div></div>

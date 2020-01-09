@@ -22,6 +22,7 @@ import CreateTrip from './components/CreateTrip/CreateTrip';
 import AgentHome from './components/AgentLoggedIn/AgentHome';
 import AgentTrips from './components/AgentLoggedIn/AgentTrips';
 import AgentTripDetails from './components/AgentLoggedIn/AgentTripDetails';
+import UserInfoUpdate from './components/UserInfoUpdate'
 
 import AdminHome from './components/AdminLoggedIn/AdminHome'
 
@@ -48,7 +49,9 @@ function App() {
           <Route path="/Register-Admin" component={RegisterAdmin} />
           <Route path="/Login" component={LoginForm} />
           <Route path="/sign-up" component={Register} />
+          <Route path="/UpdateInfo" component={UserInfoUpdate} />
           <Route component={LoginForm} />
+          
         </Switch>
       
       </KidsFlyContext.Provider>

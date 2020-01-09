@@ -17,19 +17,18 @@ const UserForm = ({props, values, touched, errors, status, role}) =>{
   //console.log(user);
   return (
     <Container>
-      <Row>
-        <Col xs='12' sm={{ size: 4, offset: 4}}>
+      <Row form>
+        <Col xs="12" sm={{ size: 10, offset: 1}} md={{size: 8, offset: 2}} lg={{size: 6, offset: 3}}>
           <Form>
-            <div className='iFormContainer'>
-              <FormGroup className='FGroup'>
+              <FormGroup className='mt-5'>
                 <Label htmlFor='username'>UserName:</Label>
-                <Field id='username' type='text' name='username' placeholder='User@gmail.com' className='txtbox'/>
+                <Field id='username' type='text' name='username' placeholder='User@gmail.com' className='form-control'/>
               </FormGroup>
-              <FormGroup className='FGroup'>
+              <FormGroup>
                 <Label htmlFor='password'>Password: (Must contain at least 8 characters)</Label>
-                <Field id='password' type='password' name='password' placeholder='Enter password here.' className='txtbox'/>
+                <Field id='password' type='password' name='password' placeholder='Enter password here.' className='form-control'/>
               </FormGroup>
-              <FormGroup className='FGroup'>
+              {/* <FormGroup className='FGroup'>
                 <Label htmlFor='fullname'>Full Name:</Label>
                 <Field id='fullname' type='text' name='fullname' placeholder='First Last' className='txtbox'/>
               </FormGroup>
@@ -48,11 +47,12 @@ const UserForm = ({props, values, touched, errors, status, role}) =>{
               <FormGroup className='FGroup'>
                 <Label htmlFor="zip">Zip:</Label>
                 <Field id='zip' type='number' name='zip' placeholder='ZipCode' className='txtbox' />
-              </FormGroup>
+              </FormGroup> */}
               <Field id='role_id' type='hidden' name='role_id' placeholder='1' className='txtbox' />
-              <Link to={{pathname:'/Register_Connection', role:2}}>Sign Up as a KidsFly Connection</Link>
-              <Button type='submit'>Sign Up</Button>
-            </div>
+              <Button color="dark" type="submit" block className="mt-5">Submit</Button>
+              <div className="text-center mt-3">
+                  <Link to="/Register-Agent" style={{fontSize: '.9rem', color: 'black'}}>Sign up to be a KidsFly Connection</Link>
+              </div>
             
           </Form>
         </Col>
@@ -63,16 +63,11 @@ const UserForm = ({props, values, touched, errors, status, role}) =>{
 };
 
 const FormikUserForm = withFormik({
-  mapPropsToValues({username, password, fullname, phone, address, state, zip, role}) {
+  mapPropsToValues({username, password, role_id}) {
     return {
       username: username || '',
       password: password || '',
-      fullname: fullname || '',
-      phone: phone || '',
-      address: address || '',
-      state: state || '',
-      zip: zip || 0,
-      role_id: role || 1
+      role_id: role_id || 1
     };
   },
   validationSchema: Yup.object().shape({
@@ -90,14 +85,9 @@ const FormikUserForm = withFormik({
     Axios
     .post('https://kids-fly2020.herokuapp.com/api/user/register', values)
     .then(resp =>{
-      if (values.role_id === 1){
-        props.history.push('/Welcome')
-      }
-      if (values.role_id === 2){
-        props.history.push('/Agent')
-      }
+      props.history.push('/Login')
       console.log(resp);
-      resetForm();
+      // resetForm();
     })
     .catch(err => console.log(err.resp));
   }
