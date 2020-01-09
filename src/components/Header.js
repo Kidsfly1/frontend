@@ -30,7 +30,7 @@ const Header = (props) => {
                             {/* <Icon icon={bxsUser} /> */}
                             {
                                 (localStorage.getItem('token') !== null && 
-                                <a href="#" onClick={() => props.logout()}><Icon icon={bxLogOut} style={{color: '', height: '24px', width: '24px'}} /></a>
+                                    <Link to="/Logout"><Icon icon={bxLogOut} style={{color: '', height: '24px', width: '24px'}} /></Link>
                                 )
                             }
                         </Col>
