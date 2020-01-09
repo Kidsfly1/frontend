@@ -17,6 +17,11 @@ const AgentTripDetails = (props) => {
             .catch(err => console.log(err))
     }, [props])
 
+    // if (currentUser.role !== 'admin' || currentUser.role !== 'agent') {
+    //     props.history.push('/Welcome');
+    //     return null
+    // }
+
     return (
         <Container>
             <Row>
@@ -42,7 +47,7 @@ const AgentTripDetails = (props) => {
             <Row>
                 <Col xs="12" className="text-center mt-5">
                     {
-                        currentUser.role_id === 3 ? (
+                        currentUser.role === 'admin' ? (
                             <>
                                 <Link to={`/Admin-Assign-Agent/${props.computedMatch.params.id}`} className="btn btn-outline-dark btn-block">Assign Agent</Link>
                                 <Link to="/Admin-Trip-Requests" className="btn btn-outline-dark btn-block">Return to Trips</Link>
