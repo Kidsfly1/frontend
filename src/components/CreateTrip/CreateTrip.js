@@ -15,7 +15,7 @@ const initialValues = {
     airport: '',
     flight: '',
     carryOn: '',
-    //children: '',
+    children: '',
     agentReq: '',
     upgrades: '',
     //selectedAgent: ''
@@ -77,7 +77,7 @@ const CreateTrip = () => {
                         {currentStep < 2 && currentStep !== 2 && <Button onClick={() => _next()} block className="mt-5 mb-1">Continue</Button>}
                         {currentStep !== 1 && currentStep !== 3 && <Button onClick={() => _prev()} block>Go Back</Button>}
 
-                        {currentStep === 3 && <Link to="/" className="btn btn-dark btn-block mt-5 mb-1">Main Menu</Link>}
+                        {currentStep === 3 && <Link to="/Welcome" className="btn btn-dark btn-block mt-5 mb-1">Main Menu</Link>}
                     </Form>
                 )}
             </Formik>

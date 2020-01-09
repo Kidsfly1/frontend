@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { axiosWithAuth } from '../../utils/axiosWithAuth';
 import { Container, Row, Col } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+import { KidsFlyContext } from '../../context/KidsFlyContext';
+
 const AgentTrips = (props) => {
+    const {currentUser} = useContext(KidsFlyContext);
     const [tripList, setTripList] = useState({});
 
     useEffect(() => {
-        axiosWithAuth().get('/trip/admin')
+        axiosWithAuth().get(`/trip/agent`)
         .then(res => setTripList(res.data))
         .catch(err => console.log(err.response))
     }, [])
@@ -22,11 +25,11 @@ const AgentTrips = (props) => {
             </Row>
             <Row>
                 <Col xs="12" sm={{size: 8, offset: 2}}>
-                    { tripList.length &&
+                    {/* { tripList.length &&
                         tripList.map(trip => 
                             <Link key={trip.id} to={'/Agent-Trip-Details/'+trip.id} className="btn btn-outline-dark btn-block">{trip.date} {trip.flight}</Link>
                         )
-                    }
+                    } */}
                 </Col>
             </Row>
         </Container>
