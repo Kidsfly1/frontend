@@ -17,14 +17,14 @@ const Header = (props) => {
                 <Container className="subHeader">
                     <Row>
                         <Col xs="2">
-                            {
+                            {/* {
                                 (localStorage.getItem('token') !== null && 
                                     <>
-                                        {/* <Link to="/Welcome"><Icon icon={bxHome} style={{color: '', height: '24px', width: '24px'}} /></Link> */}
+                                        <Link to="/Welcome"><Icon icon={bxHome} style={{color: '', height: '24px', width: '24px'}} /></Link>
                                         <Link to="/UpdateInfo"><Icon icon={bxsUser} style={{color: '', height: '24px', width: '24px'}} /></Link>
                                     </>
                                 )
-                            }
+                            } */}
                         </Col>
                         <Col xs="8" className="text-center">
                             {

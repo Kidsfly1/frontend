@@ -9,10 +9,19 @@ import './register.css'
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import { KidsFlyContext } from '../context/KidsFlyContext';
 
+const initialValues = {
+  id: '',
+  fullname: '', 
+  phone: '', 
+  address: '', 
+  state: '', 
+  zip: 0
+}
+
 const UserForm = (props) =>{
   const [user, setuser] = useState([]);
-
   const {currentUser, setCurrentUser, updateLoggedInUser} = useContext(KidsFlyContext);
+  const [userForm, setUserForm] = useState(initialValues)
 
   useEffect(() => {
     localStorage.setItem('user', JSON.stringify(currentUser))
@@ -28,7 +37,8 @@ const UserForm = (props) =>{
       <Row>
         <Col xs="12" sm={{ size: 10, offset: 1}} md={{size: 8, offset: 2}} lg={{size: 6, offset: 3}}>
           <Formik
-            initialValues={{fullname: '', phone: '', address: '', state: '', zip: 0}}
+            initialValues={userForm}
+            enableReinitialize={true}
             validate={values => {
               const errors = {};
               if(!values.fullname){
