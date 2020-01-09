@@ -14,8 +14,8 @@ const FamilyHome = () => {
                     <h2 className="mt-5 mb-5">Trips</h2>
                     <div className="mt-5 mb-5">&nbsp;</div>
                     <Link to="/Create-Trip" className="btn btn-block btn-outline-dark mt-5 mb-1 p-4"> Curent Trip</Link>
-                    <Link to="/Agent-Trips" className="btn btn-block btn-outline-dark p-4"> Upcoming Trips</Link>
-                    <Link to="/Agent-Trips" className="btn btn-block btn-outline-dark p-4"> Past Trips</Link>
+                    <Link to="" className="btn btn-block btn-outline-dark p-4"> Upcoming Trips</Link>
+                    <Link to="" className="btn btn-block btn-outline-dark p-4"> Past Trips</Link>
                 </Col>
             </Row>
         </Container>
