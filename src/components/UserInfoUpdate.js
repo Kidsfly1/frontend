@@ -40,7 +40,8 @@ const UserForm = (props) =>{
               axiosWithAuth()
               .put(`/user/${currentUser.id}`, values)
               .then(res =>{
-                
+                console.log(currentUser);
+                console.log(res)
                 setCurrentUser(
                   {...currentUser, 
                     fullname: values.fullname, 
@@ -51,11 +52,14 @@ const UserForm = (props) =>{
                   }
                 )
                 
-                if (currentUser.role_id === 1){
+                if (currentUser.role === 'family'){
                   props.history.push('/Welcome')
                 }
-                if (currentUser.role_id === 2){
+                if (currentUser.role === 'agent'){
                   props.history.push('/Agents')
+                }
+                if (currentUser.role === 'admin'){
+                  props.history.push('/Admin')
                 }
               })
               .catch(err => {
@@ -84,7 +88,7 @@ const UserForm = (props) =>{
                 <Label htmlFor="zip">Zip:</Label>
                 <Field id='zip' type='number' name='zip' placeholder='ZipCode' className='form-control' />
               </FormGroup>
-              <Field id='role_id' type='hidden' name='role_id' placeholder='1' className='form-control' />
+              <Field id='role' type='hidden' name='role' placeholder='Admin' className='form-control' />
               <Button type='submit' block className="mt-5">Submit</Button>
             </Form>
           </Formik>

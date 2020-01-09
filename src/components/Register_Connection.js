@@ -48,7 +48,7 @@ const UserForm = ({props, values, touched, errors, status, role}) =>{
                 <Label htmlFor="zip">Zip:</Label>
                 <Field id='zip' type='number' name='zip' placeholder='ZipCode' className='txtbox' />
               </FormGroup> */}
-              <Field id='role_id' type='hidden' name='role_id' placeholder='2' className='txtbox' />
+              <Field id='role_id' type='hidden' name='role_id' placeholder='Agent' className='txtbox' />
               <Button color="dark" type="submit" block className="mt-5">Submit</Button>
               <div className="text-center mt-3">
                   <Link to="/Register-Agent" style={{fontSize: '.9rem', color: 'black'}}>Sign up to be a KidsFly Connection</Link>
