@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { Row, Col, FormGroup, Label, Input } from 'reactstrap';
 import { Field, ErrorMessage } from 'formik';
 
-import DatePicker from 'react-datepicker';
-import "react-datepicker/dist/react-datepicker.css";
-
 const Step1 = (props) => {
 
     if(props.currentStep !== 1) {

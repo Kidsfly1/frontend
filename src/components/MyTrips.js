@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Input } from 'reactstrap';
 
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 import { KidsFlyContext } from '../context/KidsFlyContext';
 import { Link } from 'react-router-dom';
+import { Field } from 'formik';
 
 const AdminTripRequest = (props) => {
     const { currentUser } = useContext(KidsFlyContext);
@@ -17,12 +18,29 @@ const AdminTripRequest = (props) => {
         .catch(err => console.log(err.response))
     }, [props])
 
+    const sortTrips = e => {
+        if (e.target.value === 'date'){
+            setTripList(tripList.sort((a,b) => (a.date > b.date) ? 1 : -1))
+        } else {
+            setTripList(tripList.sort((a,b) => (a.flight > b.flight) ? 1 : -1))
+        }
+    }
+
     return (
         <Container>
             <Row>
                 <Col xs="12" className="text-center">
                     <h2 className="mt-5 mb-5">Welcome, {currentUser.fullname}</h2>
                     <div className="mt-5 mb-5">&nbsp;</div>
+                </Col>
+            </Row>
+            <Row>
+                <Col xs="12" sm={{size: 2, offset: 8}} className="text-right mb-3">
+                    <Input name="sort" id="sort" type="select" onChange={sortTrips}>
+                        <option value=""></option>
+                        <option value="date">Date</option>
+                        <option value="flight">Flight</option>
+                    </Input>
                 </Col>
             </Row>
             <Row>
